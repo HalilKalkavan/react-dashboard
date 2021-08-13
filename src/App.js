@@ -5,35 +5,30 @@ import ApprovalCard from './Components/ApprovalCard';
 import FirstClassComponent from './Components/FirstClassComponent';
 // import SeasonDisplay from './Components/SeasonDisplay';
 
-const ct = function() {
-  return 'click me';
-}
-
-
-
 class App extends React.Component {
-  onSearchSubmit(term) {
-    axios.get('https://api.unsplash.com/search/photos', {
+  state = { images: [] };
+
+  async onSearchSubmit(term) {
+    const response = await axios.get('https://api.unsplash.com/search/photos', {
       params: { query: term },
       headers: {
         Authorization:
-          'Client-ID iTzHuBffLvGIH7i0AO282TYoh4Cj_2zGz0r2t_zVpUw',
+          'Client-ID 2b98c1afb0aed3b3d94a1866bdc3ac013d21a0c86d236a0fee32355c331c0296',
       },
     });
+
+    console.log(this);
+    this.setState({ images: response.data.results });
   }
 
   render() {
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
-        <SearchBar onSubmit={this.onSearchSubmit} />
-        <br></br>
-        <button className="ui button">{ct()}</button>
-        <br></br>
-        <ApprovalCard />
-        <br></br>
-        <FirstClassComponent/>
-        <br></br>
-        {/* <SeasonDisplay /> */}
+        <SearchBar
+          onSubmit={this.onSearchSubmit}
+          guesswhtIam="Im the propsobject"
+        />
+        Found: {this.state.images.length} images
       </div>
     );
   }
