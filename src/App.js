@@ -9,16 +9,16 @@ class App extends React.Component {
   state = { images: [] };
 
   async onSearchSubmit(term) {
-    const response = await axios.get('https://api.unsplash.com/search/photos', {
-      params: { query: term },
-      headers: {
-        Authorization:
-          'Client-ID 2b98c1afb0aed3b3d94a1866bdc3ac013d21a0c86d236a0fee32355c331c0296',
-      },
-    });
+    // const response = await axios.get('https://api.unsplash.com/search/photos', {
+    //   params: { query: term },
+    //   headers: {
+    //     Authorization:
+    //       'Client-ID 2b98c1afb0aed3b3d94a1866bdc3ac013d21a0c86d236a0fee32355c331c0296',
+    //   },
+    // });
 
-    console.log(this);
-    this.setState({ images: response.data.results });
+    console.log(term);
+    // this.setState({ images: response.data.results });
   }
 
   render() {
@@ -28,10 +28,11 @@ class App extends React.Component {
           onSubmit={this.onSearchSubmit}
           guesswhtIam="Im the propsobject"
         />
-        Found: {this.state.images.length} images
+        {/* Found: {this.state.images.length} images */}
+        Found: images
       </div>
     );
   }
 }
-// testing github new pass
+
 export default App;
