@@ -8,17 +8,19 @@ import FirstClassComponent from './Components/FirstClassComponent';
 class App extends React.Component {
   state = { images: [] };
 
-  async onSearchSubmit(term) {
-    // const response = await axios.get('https://api.unsplash.com/search/photos', {
-    //   params: { query: term },
-    //   headers: {
-    //     Authorization:
-    //       'Client-ID 2b98c1afb0aed3b3d94a1866bdc3ac013d21a0c86d236a0fee32355c331c0296',
-    //   },
-    // });
+   onSearchSubmit = async (term) => {
+    const response = await axios.get('https://api.unsplash.com/search/photos', 
+      {
+        params: { query: term },
+        headers: {
+          Authorization:
+            'Client-ID iTzHuBffLvGIH7i0AO282TYoh4Cj_2zGz0r2t_zVpUw',
+        },
+      }
+    );
 
     console.log(term);
-    // this.setState({ images: response.data.results });
+    this.setState({ images: response.data.results });
   }
 
   render() {
@@ -28,8 +30,7 @@ class App extends React.Component {
           onSubmit={this.onSearchSubmit}
           guesswhtIam="Im the propsobject"
         />
-        {/* Found: {this.state.images.length} images */}
-        Found: images
+        Found: {this.state.images.length} images
       </div>
     );
   }
